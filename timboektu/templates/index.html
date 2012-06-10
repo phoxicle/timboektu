@@ -4,8 +4,16 @@
 
 	<div id="sidebar">
 		<h3>Department drilldown</h3>
-		(<a href="{% url timboektu.books.views.index %}">clear selection</a>)
+		
 		<ul>
+			<li>
+				{% if current_department %}
+				<a href="{% url timboektu.books.views.index %}">All</a>
+				{% else %}
+				All
+				{% endif %}
+			</li>
+		
 			{% for d in departments %}
 				<li>
 				{% ifequal d.id current_department.id %} {# coerce to int #}

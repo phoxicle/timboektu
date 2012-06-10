@@ -68,14 +68,14 @@ def new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            p = form.save(commit=False)
+            p = form.save()
             p.hash = (os.urandom(16)).encode('hex')
             # Send edit link to user
             send_mail(
                       'TimBoekTU edit link for ' + p.title,
                        render_to_string('email_edit.html', {'post' : p}), 
                        'from@example.com',
-                       ['cgerpheide@gmail.com'], fail_silently=False)
+                       ['cgerpheide@gmail.com'], fail_silently=True)
             p.save()
             return HttpResponseRedirect(reverse('timboektu.books.views.confirm', kwargs={'post_hash': p.hash}))
     # New

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Book Detail {% endblock %}
+{% block title %} Post Detail {% endblock %}
 
 {% block main %}
 
@@ -20,12 +20,16 @@
 		<div class="info"><label>Description:</label> {{ post.description }}</div>
 	</div>
 	<div class="personal_info">
-		<div class="info"><label>Asking price:</label> {{ post.price }}</div>
+		<div class="info price"><label>Asking price:</label> 
+		{% if post.price %}{{ post.price }} EUR
+		{% else %}Best offer
+		{% endif %}
+		</div>
 		<div class="info"><label>Date listed:</label> {{ post.crdate }} (Last modified: {{post.mdate}})</div>
 	</div>
 	
 	<div id="contact">
-	<a href="mailto:{{ post.email }}?subject={{ subject }}&body={{ email }}" class="email">Contact this seller via email</a>
+	<a class="button" href="mailto:{{ post.email }}?subject={{ subject }}&body={{ email }}" class="email">Contact this seller via email</a>
 	</div>
 	
 {% endblock %}
