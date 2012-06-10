@@ -1,0 +1,10 @@
+<h1>{{ post.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/timboektu/books/post/{{ post.id }}/update/" method="post">
+	{% csrf_token %}
+	<input type="text" name="title" value="{{ post.title}}" />
+
+<input type="submit" value="Vote" />
+</form>
