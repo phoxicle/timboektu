@@ -11,8 +11,12 @@ urlpatterns = patterns('',
     
     url(r'^timboektu/books/$', 'timboektu.books.views.index'),
     url(r'^timboektu/books/post/(?P<post_id>\d+)/$', 'timboektu.books.views.detail'),
-    url(r'^timboektu/books/post/(?P<post_id>\d+)/edit/$', 'timboektu.books.views.edit'),
-    url(r'^timboektu/books/post/(?P<post_id>\d+)/update/$', 'timboektu.books.views.update'),
+    url(r'^timboektu/books/post/new/$', 'timboektu.books.views.new'),
+    url(r'^timboektu/books/post/edit/(?P<post_hash>.+)/$', 'timboektu.books.views.edit'),
+    url(r'^timboektu/books/department/(?P<department_id>\d+)/$', 'timboektu.books.views.department'),
+    url(r'^timboektu/books/about/$', 'timboektu.books.views.about'),
+    url(r'^timboektu/books/contact/$', 'timboektu.books.views.contact'),
+    url(r'^timboektu/books/post/confirm/(?P<post_hash>.+)/$', 'timboektu.books.views.confirm'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -1,0 +1,115 @@
+body{
+	background:white;	
+	font-family: Trebuchet MS, Lucida Grande, comic sans ms;
+}
+
+a {
+	color: orange;	
+}
+
+.posts a {
+	color: crimson;	
+}
+
+#nav a {
+	text-decoration: none;	
+}
+
+#page{
+	background: lightblue;
+	padding: 5px;
+	width: 1100px;
+	margin: 20px auto;
+	min-height: 500px;
+	box-shadow: 2px 2px 7px #000;
+	-moz-box-shadow: 2px 2px 7px #000;
+	-webkit-box-shadow: 2px 2px 7px #000;
+	background: rgb(204,235,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgb(204,235,255) 0%, rgb(102,182,252) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(204,235,255)), color-stop(100%,rgb(102,182,252))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgb(204,235,255) 0%,rgb(102,182,252) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgb(204,235,255) 0%,rgb(102,182,252) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgb(204,235,255) 0%,rgb(102,182,252) 100%); /* IE10+ */
+	background: linear-gradient(top, rgb(204,235,255) 0%,rgb(102,182,252) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccebff', endColorstr='#66b6fc',GradientType=0 ); /* IE6-9 */
+}
+
+#logo {
+	background: white;
+	padding :10px;
+	float: left;
+	border-radius: 0 60px 60px;
+	font-family: fantasy;	
+}
+
+#logo a {
+	color: crimson;	
+	text-shadow: 6px -3px 2px orange;/*#6374AB;*/
+}
+
+#nav {
+	background: white;
+	padding: 10px;
+	float:right;
+	border-radius: 60px;
+}
+
+#nav ul {
+	padding: 0;
+	margin: 0;	
+}
+
+#nav ul li {
+	float: left;
+	list-style-type: none;
+	padding: 0 10px;
+}
+
+#top {
+	margin-bottom: 20px;	
+}
+
+#sidebar {
+	width: 300px;
+	background: white;
+	padding: 10px;	
+	float: left;
+	margin-right: 10px;
+}
+
+#main {
+	background: white;
+	float: left;
+	padding: 20px;
+}
+
+#search input[type=text] {
+	width: 400px;
+	height: 25px;
+}
+
+.info label {
+	font-weight: bold;
+	display: inline-block;
+	width: 200px;	
+}
+
+.posts td {
+	padding: 5px;	
+}
+
+.posts tr.odd {
+background: #eee;
+}
+
+.posts td.title {
+	min-width: 400px;
+}
+
+.errorlist {
+	color: red;	
+}
+
+.clear {
+	clear: both;	
+}

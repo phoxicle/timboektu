@@ -1,2 +1,31 @@
-Detail
-{{ post }}
+{% extends "base.html" %}
+
+{% block title %} Book Detail {% endblock %}
+
+{% block main %}
+
+	<div class="book_info">
+		<div class="info"><label>Title:</label> {{ post.title }}</div>
+		<div class="info"><label>Authors:</label> {{ post.authors }}</div>
+		<div class="info"><label>Edition:</label> {{ post.edition }}</div>
+		<div class="info"><label>Year:</label> {{ post.year }}</div>
+		<div class="info"><label>ISBN:</label> {{ post.isbn }}</div>
+	</div>
+	<div class="study_info">
+		<div class="info">
+			<label>Department(s):</label> 
+			{{ post.departments.all|join:", " }}
+		</div>
+		<div class="info"><label>Relevant courses:</label> {{ post.courses }}</div>
+		<div class="info"><label>Description:</label> {{ post.description }}</div>
+	</div>
+	<div class="personal_info">
+		<div class="info"><label>Asking price:</label> {{ post.price }}</div>
+		<div class="info"><label>Date listed:</label> {{ post.crdate }} (Last modified: {{post.mdate}})</div>
+	</div>
+	
+	<div id="contact">
+	<a href="mailto:{{ post.email }}?subject={{ subject }}&body={{ email }}" class="email">Contact this seller via email</a>
+	</div>
+	
+{% endblock %}

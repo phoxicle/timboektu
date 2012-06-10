@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/global.css" type="text/css" media="all">
+    <script type="text/javascript" src="js/global.js"></script>
+
+
+    <title>TimBoekTU</title>
+		
+</head>
+
+<div id="page">
+
+	<div id="top">
+	
+		<div id="logo">
+			<h1><a href="{% url timboektu.books.views.index %}">TimBoekTU</a></h1>
+		</div> <!-- logo -->
+		
+		<div id="nav">
+			<ul>
+				<li><a href="{% url timboektu.books.views.index %}">Search</a></li>
+				<li><a href="{% url timboektu.books.views.new %}">Create ad</a></li>
+				<li><a href="{% url timboektu.books.views.about %}">About</a></li>
+				<li><a href="{% url timboektu.books.views.contact %}">Contact</a></li>
+			</ul>
+		</div> <!-- nav -->
+	
+		<div class="clear"></div>
+	
+	</div> <!-- top -->
+	
+	
+	
+	<div id="bottom">
+	
+		{% block sidebar %}
+		{% endblock %}
+		
+		<div id="main">
+		
+			{% block search %} {% endblock %}
+		
+			<h2>{% block title %} {% endblock %}</h2>
+		
+			{% block main %}
+			Main block
+			{% endblock %}
+		
+		</div> <!-- main -->
+		
+		<div class="clear"></div>
+	
+	</div> <!-- bottom -->
+	
+</div> <!-- page -->
+
+</html>

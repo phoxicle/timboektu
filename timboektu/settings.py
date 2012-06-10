@@ -59,7 +59,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/Users/cgerpheide/dev/python/timboektu/timboektu/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -154,3 +154,7 @@ LOGGING = {
         },
     }
 }
+
+# python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025

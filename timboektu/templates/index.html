@@ -1,9 +1,89 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+
+	<div id="sidebar">
+		<h3>Department drilldown</h3>
+		(<a href="{% url timboektu.books.views.index %}">clear selection</a>)
+		<ul>
+			{% for d in departments %}
+				<li>
+				{% ifequal d.id current_department.id %} {# coerce to int #}
+					{{ d.title }}
+				{% else %}
+					<a href="{% url timboektu.books.views.department department_id=d.id %}">
+						{{ d.title }}
+					</a>
+				{% endifequal %}
+				
+				</li>
+			{% endfor %}
+		</ul>
+		
+	</div> <!-- sidebar -->
+
+{% endblock %}
+
+{% block title %} 
+	{% if query %}
+		Search results for: {{ query }}
+	{% else %}
+		Latest Additions 
+		{% if current_department %}
+			to {{ current_department.title }}
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block search %}
+
+<div id="search">
+
+	{% if current_department %}
+	<form method="post" action="{% url timboektu.books.views.department department_id=current_department.id %}">
+	{% else %}
+	<form method="post" action="{% url timboektu.books.views.index %}">
+	{% endif %}
+	
+		{% csrf_token %}
+		Search: <input type="text" name="query" value="{% if query %}{{ query }}{% endif %}"/>
+		<input type="submit" value="Go"/>
+	</form>
+
+</div>
+
+{% if current_department %}
+	<div id="currently_browsing">
+		Currently searching {{ current_department.title }} 
+		(<a href="{% url timboektu.books.views.index %}">clear selection</a>)
+	</div>
+{% endif %}
+
+{% endblock %}
+
+{% block main %}
+
+<div class="posts">
 {% if latest_posts %}
-    <ul>
+    <table>
+    <tr><th>Title</th><th>Price</th></tr>
     {% for post in latest_posts %}
-        <li><a href="post/{{ post.id }}/">{{ post.title }}</a></li>
+        <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+	        <td class="title">
+	      		<a href="{% url timboektu.books.views.detail post_id=post.id %}">{{ post.title }}</a>
+	      		<br/>by: {{ post.authors }}
+			</td>
+			<td> 
+				{% if post.price %}{{ post.price }} EUR
+				{% else %}Best offer
+				{% endif %}
+			</td>
+		</tr>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>No posts are available.</p>
 {% endif %}
+</div> <!-- posts -->
+
+{% endblock %}
