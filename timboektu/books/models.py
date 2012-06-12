@@ -46,6 +46,10 @@ class PostForm(ModelForm):
         model = Post
         
 class PostManager(models.Manager):
+    stop_list = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 
+                 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
+                 'that', 'the', 'to', 'was', 'were', 'will', 'with']
+    
     def query(self, query):
         from django.db.models import Q
         import operator
@@ -64,8 +68,8 @@ class PostManager(models.Manager):
             if s:
                 strings += s.split(' ')
         
-        # Remove empty strings
-        strings = filter(bool, strings)
+        # Remove common strings
+        strings = filter(lambda s: s not in self.stop_list, strings)
         
         # Build and execute query
         posts = []
@@ -77,7 +81,7 @@ class PostManager(models.Manager):
                 ors.append(Q(authors__icontains=s))
                 ors.append(Q(courses__icontains=s))
                 ors.append(Q(isbn__icontains=s))
-              
+           
             posts = Post.objects.filter(reduce(operator.or_, ors))
     
         return posts

@@ -15,7 +15,8 @@ def department(request, department_id):
     query = request.POST.get('query')
     if query:
         posts = PostManager().query(query)
-        posts = posts.filter(departments__id=department_id).order_by('-crdate')
+        if posts:
+            posts = posts.filter(departments__id=department_id).order_by('-crdate')
     else:
         posts = Post.objects.filter(departments__id=department_id).order_by('-crdate')[:5]
     departments = Department.objects.all()
