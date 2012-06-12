@@ -1,5 +1,5 @@
 body{
-	background: crimson;	
+	background: #eee;
 	font-family: Trebuchet MS, Lucida Grande, comic sans ms;
 }
 
@@ -35,12 +35,12 @@ a:hover {
 	padding :10px;
 	float: left;
 	border-radius: 0 60px 60px;
-	font-family: fantasy;	
 }
 
 #logo a {
 	color: crimson;	
-	text-shadow: 6px -3px 2px orange;/*#6374AB;*/
+	/*text-shadow: 6px -3px 2px orange;*/
+	text-decoration: none;
 }
 
 #nav {
@@ -63,8 +63,8 @@ a:hover {
 
 #tagline {
 	color: white;
-    margin-left: 210px;
-    margin-top: 87px;
+    margin-left: 197px;
+    margin-top: 77px;
     position: absolute;	
 }
 
