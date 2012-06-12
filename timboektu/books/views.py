@@ -45,7 +45,8 @@ def detail(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
     email = urllib.quote_plus(render_to_string('email.html', {'post': p}))
     subject = urllib.quote_plus("Your advertisement on TimBoekTU")
-    return render(request, 'detail.html', {'post': p, 'email': email, 'subject': subject})
+    mailto = p.email + '?subject=' + subject + '&body=' + email
+    return render(request, 'detail.html', {'post': p, 'mailto': mailto })
 
 def edit(request, post_hash):
     p = get_object_or_404(Post, hash=post_hash)

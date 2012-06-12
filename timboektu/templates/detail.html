@@ -28,8 +28,9 @@
 		<div class="info"><label>Date listed:</label> {{ post.crdate }} (Last modified: {{post.mdate}})</div>
 	</div>
 	
-	<div id="contact">
-	<a class="button" href="mailto:{{ post.email }}?subject={{ subject }}&body={{ email }}" class="email">Contact this seller via email</a>
+	<div id="contact" class="button">
+		{% load obfuscate %}
+		{{ mailto|obfuscate:'Contact this seller via email' }}
 	</div>
 	
 {% endblock %}
