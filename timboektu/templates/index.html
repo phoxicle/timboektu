@@ -54,7 +54,7 @@
 	{% endif %}
 	
 		{% csrf_token %}
-		Search: <input type="text" name="query" value="{% if query %}{{ query }}{% endif %}"/>
+		<input placeholder="Search title, author, desciption, ISBN, etc..." type="text" name="query" value="{% if query %}{{ query }}{% endif %}"/>
 		<input type="submit" value="Go"/>
 	</form>
 
@@ -72,7 +72,7 @@
 {% block main %}
 
 <div class="posts">
-{% if latest_posts %}
+{% if posts %}
     <table>
     <tr><th>
 	    	{% if current_department %}
@@ -96,7 +96,7 @@
     				Price
     		</a>
     	</th></tr>
-    {% for post in latest_posts %}
+    {% for post in posts %}
         <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
 	        <td class="title">
 	      		<a href="{% url timboektu.books.views.detail post_id=post.id %}">{{ post.title }}</a>
@@ -114,5 +114,21 @@
     <p>No posts are available.</p>
 {% endif %}
 </div> <!-- posts -->
+
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}

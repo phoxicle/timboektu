@@ -113,7 +113,7 @@ h2 {
 }
 
 #search input[type=text] {
-	width: 400px;
+	width: 500px;
 	height: 25px;
 }
 
@@ -221,6 +221,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 
 .dec {
 	background: url(../images/arrow_down.gif);	
+}
+
+.pagination {
+	text-align: right;	
+	font-size: .8em;
+	color: #999;
+	padding-top: 10px;
+}
+
+.pagination a {
+	color: #999;	
 }
 
 .clear {

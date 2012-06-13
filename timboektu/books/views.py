@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 import time
 import os
 from django.core.mail import send_mail
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import sys
 
@@ -15,13 +16,11 @@ def department(request, department_id):
     return index(request, department)
     
 def index(request, department = None):
-    from django.core.paginator import Paginator
-    
-    # Check for submitted query
     query = request.POST.get('query')
     order_by = request.GET.get('order_by')
     if not order_by:
         order_by = '-crdate'
+    page = request.GET.get('page')
         
     # Get posts for query
     #TODO extend .order_by for case insensitivity: .extra(select={'lower_name': 'lower(name)'})
@@ -35,8 +34,20 @@ def index(request, department = None):
     if department:
         posts = posts.filter(departments__id=department.id)
         
+    # Paging
+    num_per_page = 15 if query else 5 
+    paginator = Paginator(posts, num_per_page)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+        
     return render(request, 'index.html', {
-        'latest_posts': posts[:5],
+        'posts': posts,
         'departments': Department.objects.all(),
         'current_department': department,
         'query' : query,
