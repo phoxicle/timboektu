@@ -203,6 +203,26 @@ background: linear-gradient(top, rgb(254,204,177) 0%,rgb(241,116,50) 50%,rgb(234
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* IE6-9 */	
 }
 
+.posts th a {
+	padding-right: 20px;
+	text-decoration: none;
+	background-position: right center;
+	background-repeat: no-repeat;
+	color: black;
+}
+
+.posts th a:hover {
+	color: crimson;	
+}
+
+.asc {
+	background: url(../images/arrow_up.gif);	
+}
+
+.dec {
+	background: url(../images/arrow_down.gif);	
+}
+
 .clear {
 	clear: both;	
 }

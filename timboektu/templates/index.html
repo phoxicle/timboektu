@@ -74,7 +74,18 @@
 <div class="posts">
 {% if latest_posts %}
     <table>
-    <tr><th>Title</th><th>Price</th></tr>
+    <tr><th>
+    		<a class="{{ title_order_class }}" 
+    			href="{% url timboektu.books.views.index order_by=title_order_by %}">
+				Title
+    		</a>
+    	</th>
+    	<th>
+    		<a class="{{ price_order_class }}" 
+    			href="{% url timboektu.books.views.index order_by=price_order_by %}">
+    				Price
+    		</a>
+    	</th></tr>
     {% for post in latest_posts %}
         <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
 	        <td class="title">

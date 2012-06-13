@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^timboektu/', include('timboektu.foo.urls')),
     
     url(r'^timboektu/books/$', 'timboektu.books.views.index'),
+    url(r'^timboektu/books/order/(?P<order_by>.+)/$', 'timboektu.books.views.index'),
     url(r'^timboektu/books/post/(?P<post_id>\d+)/$', 'timboektu.books.views.detail'),
     url(r'^timboektu/books/post/new/$', 'timboektu.books.views.new'),
     url(r'^timboektu/books/post/edit/(?P<post_hash>.+)/$', 'timboektu.books.views.edit'),

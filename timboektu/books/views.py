@@ -10,35 +10,35 @@ from django.core.mail import send_mail
 import sys
 
 # TODO combine with index, optional department id   
-def department(request, department_id):
-    d = get_object_or_404(Department, pk=department_id)
-    query = request.POST.get('query')
-    if query:
-        posts = PostManager().query(query)
-        if posts:
-            posts = posts.filter(departments__id=department_id).order_by('-crdate')
-    else:
-        posts = Post.objects.filter(departments__id=department_id).order_by('-crdate')[:5]
-    departments = Department.objects.all()
-    return render(request, 'index.html', {
-        'latest_posts': posts,
-        'departments': departments,
-        'current_department': d,
-        'query' : query
-    })
+def department(request, department_id, order_by = '-crdate'):
+    department = get_object_or_404(Department, pk=department_id)
+    return index(request, department, order_by)
     
-def index(request):
+def index(request, department = None, order_by = '-crdate'):
     # Check for submitted query
     query = request.POST.get('query')
+        
+    # Get posts for query
+    #TODO extend .order_by for case insensitivity: .extra(select={'lower_name': 'lower(name)'})
+    posts = []
     if query:
-        posts = PostManager().query(query);
+        posts = PostManager().query(query).order_by(order_by)
     else:
-        posts = Post.objects.all().order_by('-crdate')[:5]
-    departments = Department.objects.all()
+        posts = Post.objects.all().order_by(order_by)
+        
+    # Filter for department 
+    if department:
+        posts.filter(departments__id=department.id)
+        
     return render(request, 'index.html', {
-        'latest_posts': posts,
-        'departments': departments,
-        'query' : query
+        'latest_posts': posts[:5],
+        'departments': Department.objects.all(),
+        'current_department': department,
+        'query' : query,
+        'title_order_by' : '-title' if order_by == 'title' else 'title',
+        'title_order_class' : 'dec' if order_by == 'title' else 'asc' if order_by == '-title' else '',
+        'price_order_by' : '-price' if order_by == 'price' else 'price',
+        'price_order_class' : 'dec' if order_by == 'price' else 'asc' if order_by == '-price' else '',
     })
 
 def detail(request, post_id):
