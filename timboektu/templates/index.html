@@ -75,14 +75,24 @@
 {% if latest_posts %}
     <table>
     <tr><th>
-    		<a class="{{ title_order_class }}" 
-    			href="{% url timboektu.books.views.index order_by=title_order_by %}">
-				Title
+	    	{% if current_department %}
+	    		<a class="{{ title_order_class }}" 
+	    			href="{% url timboektu.books.views.department department_id=current_department.id order_by=title_order_by %}">
+	    	{% else %}
+	    		<a class="{{ title_order_class }}" 
+	    			href="{% url timboektu.books.views.index order_by=title_order_by %}">
+	    	{% endif %}
+					Title
     		</a>
     	</th>
     	<th>
-    		<a class="{{ price_order_class }}" 
-    			href="{% url timboektu.books.views.index order_by=price_order_by %}">
+    		{% if current_department %}
+    			<a class="{{ price_order_class }}" 
+    				href="{% url timboektu.books.views.department department_id=current_department.id order_by=price_order_by %}">
+	    	{% else %}
+	    		<a class="{{ price_order_class }}" 
+	    			href="{% url timboektu.books.views.index order_by=price_order_by %}">
+	    	{% endif %}
     				Price
     		</a>
     	</th></tr>

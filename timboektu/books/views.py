@@ -28,7 +28,7 @@ def index(request, department = None, order_by = '-crdate'):
         
     # Filter for department 
     if department:
-        posts.filter(departments__id=department.id)
+        posts = posts.filter(departments__id=department.id)
         
     return render(request, 'index.html', {
         'latest_posts': posts[:5],
