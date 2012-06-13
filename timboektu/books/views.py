@@ -10,13 +10,18 @@ from django.core.mail import send_mail
 import sys
 
 # TODO combine with index, optional department id   
-def department(request, department_id, order_by = '-crdate'):
+def department(request, department_id):
     department = get_object_or_404(Department, pk=department_id)
-    return index(request, department, order_by)
+    return index(request, department)
     
-def index(request, department = None, order_by = '-crdate'):
+def index(request, department = None):
+    from django.core.paginator import Paginator
+    
     # Check for submitted query
     query = request.POST.get('query')
+    order_by = request.GET.get('order_by')
+    if not order_by:
+        order_by = '-crdate'
         
     # Get posts for query
     #TODO extend .order_by for case insensitivity: .extra(select={'lower_name': 'lower(name)'})
