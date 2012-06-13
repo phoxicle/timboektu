@@ -50,6 +50,12 @@ class PostManager(models.Manager):
                  'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
                  'that', 'the', 'to', 'was', 'were', 'will', 'with']
     
+    #TODO
+    def order_by(self, *args, **kwargs):
+        import sys
+        sys.exit()
+        return self.get_query_set().order_by(*args, **kwargs)
+    
     def query(self, query):
         from django.db.models import Q
         import operator

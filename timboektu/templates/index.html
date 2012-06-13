@@ -74,13 +74,13 @@
 <div class="posts">
 {% if posts %}
     <table>
-    <tr><th>
+    	<tr><th>
 	    	{% if current_department %}
 	    		<a class="{{ title_order_class }}" 
-	    			href="{% url timboektu.books.views.department department_id=current_department.id %}?order_by={{ title_order_by }}">
+	    			href="{% url timboektu.books.views.department department_id=current_department.id %}?order_by={{ title_order_by }}{% if query %}&query={{ query }}{% endif %}">
 	    	{% else %}
 	    		<a class="{{ title_order_class }}" 
-	    			href="{% url timboektu.books.views.index %}?order_by={{ title_order_by }}">
+	    			href="{% url timboektu.books.views.index %}?order_by={{ title_order_by }}{% if query %}&query={{ query }}{% endif %}">
 	    	{% endif %}
 					Title
     		</a>
@@ -88,10 +88,10 @@
     	<th>
     		{% if current_department %}
     			<a class="{{ price_order_class }}" 
-    				href="{% url timboektu.books.views.department department_id=current_department.id %}?order_by={{ price_order_by }}">
+    				href="{% url timboektu.books.views.department department_id=current_department.id %}?order_by={{ price_order_by }}{% if query %}&query={{ query }}{% endif %}">
 	    	{% else %}
 	    		<a class="{{ price_order_class }}" 
-	    			href="{% url timboektu.books.views.index %}?order_by={{ price_order_by }}">
+	    			href="{% url timboektu.books.views.index %}?order_by={{ price_order_by }}{% if query %}&query={{ query }}{% endif %}">
 	    	{% endif %}
     				Price
     		</a>

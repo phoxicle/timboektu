@@ -17,6 +17,8 @@ def department(request, department_id):
     
 def index(request, department = None):
     query = request.POST.get('query')
+    if not query:
+        query = request.GET.get('query')
     order_by = request.GET.get('order_by')
     if not order_by:
         order_by = '-crdate'
