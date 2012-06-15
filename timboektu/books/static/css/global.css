@@ -124,6 +124,7 @@ a:hover {
 #main {
 	float: left;
 	padding: 20px 0 20px 0px;
+	width: 584px;
 }
 
 h2 {
@@ -166,7 +167,7 @@ form label {
 }
 
 .posts table {
-	widtH: 584px;	
+	width: 100%;	
 }
 
 .posts td {
