@@ -13,10 +13,11 @@
     <title>TimBoekTU</title>
 		
 </head>
+<body>
 
-<div id="page">
+<div id="strip">
 
-	<div id="top">
+	<div id="header">
 	
 		<div id="logo">
 			<h1><a href="{% url timboektu.books.views.index %}">TimBoekTU</a></h1>
@@ -35,12 +36,13 @@
 	
 		<div class="clear"></div>
 	
-	</div> <!-- top -->
-	
-	
-	
-	<div id="bottom">
-	
+	</div> <!-- header -->
+
+</div> <!-- strip -->
+
+
+<div id="page">
+
 		{% block sidebar %}
 		{% endblock %}
 		
@@ -58,8 +60,7 @@
 		
 		<div class="clear"></div>
 	
-	</div> <!-- bottom -->
 	
 </div> <!-- page -->
-
+</body>
 </html>
