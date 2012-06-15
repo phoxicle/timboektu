@@ -25,10 +25,10 @@ def index(request, department = None):
     page = request.GET.get('page')
         
     # Get posts for query
-    #TODO extend .order_by for case insensitivity: .extra(select={'lower_name': 'lower(name)'})
+    #TODO extend .order_by for case insensitivity: .extra(select={'title': 'lower(title)'})
     posts = []
     if query:
-        posts = PostManager().query(query).order_by(order_by)
+        posts = Post.objects.query_filter(query).order_by(order_by)
     else:
         posts = Post.objects.all().order_by(order_by)
         

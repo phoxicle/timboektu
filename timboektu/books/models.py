@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django.db.models.query import QuerySet
  
 class Department(models.Model):
     title = models.CharField(max_length=100)
@@ -7,7 +8,75 @@ class Department(models.Model):
     def __unicode__(self):
         return self.title
     
+class PostManager(models.Manager):
+    stop_list = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 
+                 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
+                 'that', 'the', 'to', 'was', 'were', 'will', 'with']
+    
+class QuerySetManager(models.Manager):
+    
+    def get_query_set(self):
+        return self.model.QuerySet(self.model)
+    def __getattr__(self, attr, *args):
+        return getattr(self.get_query_set(), attr, *args)
+    
 class Post(models.Model):
+    objects = QuerySetManager()
+    
+    class QuerySet(QuerySet):
+        
+        # Words to filter out
+        stop_list = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 
+                 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
+                 'that', 'the', 'to', 'was', 'were', 'will', 'with']
+        
+        # Extend order_by to be case insensitive for title field
+        def order_by(self, *field_names):
+            if 'title' in field_names:
+                field_list = [field.replace('title','lower_title') for field in field_names]
+                self = self.extra(select={'lower_title': 'lower(title)'})
+                return QuerySet.order_by(self, *field_list)
+            
+            return QuerySet.order_by(self, *field_names)
+        
+        def query_filter(self, query):
+            from django.db.models import Q
+            import operator
+            import re
+            
+            strings = []
+            
+            # Add quoted strings
+            quoted = re.findall('".+?"', query)
+            for s in quoted:
+                strings.append(re.sub('"','',s))
+            
+            # Add unquoted terms
+            unquoted = re.sub('".+?"', '', query)
+            for s in unquoted.split(','):
+                if s:
+                    strings += s.split(' ')
+            
+            # Remove common strings
+            strings = filter(lambda s: s not in self.stop_list, strings)
+            
+            # Build and execute query
+            posts = self.none()
+            if strings:
+                ors = []
+                for s in strings:
+                    ors.append(Q(title__icontains=s))
+                    ors.append(Q(description__icontains=s))
+                    ors.append(Q(authors__icontains=s))
+                    ors.append(Q(courses__icontains=s))
+                    ors.append(Q(isbn__icontains=s))
+               
+                posts = self.filter(reduce(operator.or_, ors))
+        
+            return posts
+        
+    
+    
     title = models.CharField(max_length=1000)
     authors = models.TextField(blank=True)
     EDITION_CHOICES = (
@@ -44,50 +113,3 @@ class Post(models.Model):
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        
-class PostManager(models.Manager):
-    stop_list = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 
-                 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
-                 'that', 'the', 'to', 'was', 'were', 'will', 'with']
-    
-    #TODO
-    def order_by(self, *args, **kwargs):
-        import sys
-        sys.exit()
-        return self.get_query_set().order_by(*args, **kwargs)
-    
-    def query(self, query):
-        from django.db.models import Q
-        import operator
-        import re
-        
-        strings = []
-        
-        # Add quoted strings
-        quoted = re.findall('".+?"', query)
-        for s in quoted:
-            strings.append(re.sub('"','',s))
-        
-        # Add unquoted terms
-        unquoted = re.sub('".+?"', '', query)
-        for s in unquoted.split(','):
-            if s:
-                strings += s.split(' ')
-        
-        # Remove common strings
-        strings = filter(lambda s: s not in self.stop_list, strings)
-        
-        # Build and execute query
-        posts = []
-        if strings:
-            ors = []
-            for s in strings:
-                ors.append(Q(title__icontains=s))
-                ors.append(Q(description__icontains=s))
-                ors.append(Q(authors__icontains=s))
-                ors.append(Q(courses__icontains=s))
-                ors.append(Q(isbn__icontains=s))
-           
-            posts = Post.objects.filter(reduce(operator.or_, ors))
-    
-        return posts
