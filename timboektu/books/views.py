@@ -110,6 +110,12 @@ def confirm(request, post_hash):
     return render(request, 'confirm.html', {
         'post': p,
     })
+
+def delete(request):
+    post_hash = request.GET.get('hash')
+    p = get_object_or_404(Post, hash=post_hash)
+    p.delete()
+    return render(request, 'delete.html')
     
 def about(request):
     return render(request, 'about.html')

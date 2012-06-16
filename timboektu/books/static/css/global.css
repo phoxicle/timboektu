@@ -204,10 +204,14 @@ background: #eee;
 }
 
 a.button,
-div.button a {
+div.button a,
+input[type=submit] {
+	cursor: pointer;
+	font-size: 1em;
+	border: 0;
 	display: inline-block;
 	margin: 20px 0;
-	padding: 5px;
+	padding: 5px 10px;
 	border-radius: 5px;
 	color: white;
 	background: rgb(99,142,216); /* Old browsers */
@@ -221,7 +225,8 @@ div.button a {
 }
 
 a.button:hover,
-div.button a:hover {
+div.button a:hover,
+input[type=submit]:hover {
 background: rgb(254,204,177); /* Old browsers */
 background: -moz-linear-gradient(top, rgb(254,204,177) 0%, rgb(241,116,50) 50%, rgb(234,85,7) 51%, rgb(251,149,94) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(254,204,177)), color-stop(50%,rgb(241,116,50)), color-stop(51%,rgb(234,85,7)), color-stop(100%,rgb(251,149,94))); /* Chrome,Safari4+ */
