@@ -2,6 +2,7 @@ body{
 	font-family: Trebuchet MS, Lucida Grande, comic sans ms;
 	margin:0;
 	padding:0;
+	color: #333;
 }
 
 a {
@@ -79,7 +80,7 @@ a:hover {
 
 #tagline {
 	color: white;
-    margin-left: 197px;
+    margin-left: 189px;
     margin-top: 77px;
     position: absolute;	
 }
@@ -163,6 +164,12 @@ form label {
 	display: inline-block;	
 }
 
+form #id_title,
+form #id_authors,
+form #id_email{
+width: 300px;	
+}
+
 .posts {
 	width: 584px;	
 }
@@ -230,7 +237,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 	text-decoration: none;
 	background-position: right center;
 	background-repeat: no-repeat;
-	color: black;
+	color: #333;
 }
 
 .posts th a:hover {

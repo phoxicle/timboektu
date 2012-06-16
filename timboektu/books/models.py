@@ -1,24 +1,19 @@
 from django.db import models
 from django.forms import ModelForm
 from django.db.models.query import QuerySet
- 
-class Department(models.Model):
-    title = models.CharField(max_length=100)
-    
-    def __unicode__(self):
-        return self.title
-    
-class PostManager(models.Manager):
-    stop_list = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 
-                 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on',
-                 'that', 'the', 'to', 'was', 'were', 'will', 'with']
-    
+
 class QuerySetManager(models.Manager):
     
     def get_query_set(self):
         return self.model.QuerySet(self.model)
     def __getattr__(self, attr, *args):
         return getattr(self.get_query_set(), attr, *args)
+ 
+class Department(models.Model):
+    title = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return self.title
     
 class Post(models.Model):
     objects = QuerySetManager()
@@ -78,7 +73,7 @@ class Post(models.Model):
     
     
     title = models.CharField(max_length=1000)
-    authors = models.TextField(blank=True)
+    authors = models.CharField(blank=True, max_length=1000)
     EDITION_CHOICES = (
         ('1', '1st'),
         ('2', '2nd'),
@@ -91,18 +86,20 @@ class Post(models.Model):
         ('9', '9th'),
     )
     edition = models.CharField(max_length=2, choices=EDITION_CHOICES, blank=True)
-    year = models.CharField(max_length=4, blank=True)
-    isbn = models.CharField(max_length=13, blank=True) # http://djangosnippets.org/snippets/1994/
-    courses = models.TextField(blank=True)
-    description = models.TextField(blank=True)
-    departments = models.ManyToManyField(Department, null=True, blank=True)
+    year = models.CharField("Year of publication", max_length=4, blank=True)
+    isbn = models.CharField("ISBN", max_length=13, blank=True) # http://djangosnippets.org/snippets/1994/
+    courses = models.TextField("Relevant courses", blank=True)
+    description = models.TextField(blank=True,
+                                   help_text='For example: Dutch language book, good condition.')
+    departments = models.ManyToManyField(Department)
     #photo = models.ImageField(blank=True)
     crdate = models.DateTimeField(auto_now=True)
     mdate = models.DateTimeField(auto_now=True)
     hash = models.CharField(max_length=100, editable=False, blank=True)
     
-    email = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    email = models.EmailField("Your email")
+    price = models.DecimalField("Asking price", max_digits=5, decimal_places=2, null=True, blank=True,
+                                help_text='Defaults to "Best Offer" when left blank')
     
     class Meta:
         ordering = ['-crdate']

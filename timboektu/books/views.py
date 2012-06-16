@@ -1,4 +1,4 @@
-from models import Post, PostForm, Department, PostManager
+from models import Post, PostForm, Department
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render, redirect

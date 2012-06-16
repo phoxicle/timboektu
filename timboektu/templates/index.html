@@ -32,18 +32,8 @@
 
 {% endblock %}
 
-{% block title %} 
-	{% if query %}
-		Search results for: {{ query }}
-	{% else %}
-		Latest Additions 
-		{% if current_department %}
-			to {{ current_department.title }}
-		{% endif %}
-	{% endif %}
-{% endblock %}
 
-{% block search %}
+{% block main %}
 
 <div id="search">
 
@@ -67,9 +57,16 @@
 	</div>
 {% endif %}
 
-{% endblock %}
-
-{% block main %}
+<h2>
+{% if query %}
+	Search results for: {{ query }}
+{% else %}
+	Latest Additions 
+	{% if current_department %}
+		to {{ current_department.title }}
+	{% endif %}
+{% endif %}
+</h2>
 
 <div class="posts">
 {% if posts %}

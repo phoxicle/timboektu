@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %} {% if post %} Edit post {% else %} New post {% endif %} {% endblock %}
+{% block title %} {% if post %} Edit listing {% else %} New listing {% endif %} {% endblock %}
 
 {% block main %}
+
+<p>
+Use the form below to define your book listing. 
+After submitting the form, you will receive a link with which you can edit the listing.
+If someone is interested in your book, they will contact you via the email you list here.
+You can get more info and tips on selling on the
+<a href="{% url timboektu.books.views.about %}#selling">about</a> page.
+</p>
+<br/>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
