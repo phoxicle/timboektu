@@ -260,7 +260,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 color: #ccc;
 text-align: center;
 font-size: .7em;
-padding-top: 30px;
+margin-top: 30px;
 }
 
 #footer a {
