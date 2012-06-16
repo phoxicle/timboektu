@@ -7,6 +7,7 @@ import time
 import os
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import urllib
 
 import sys
 
@@ -60,7 +61,6 @@ def index(request, department = None):
     })
 
 def detail(request, post_id):
-    import urllib
     p = get_object_or_404(Post, pk=post_id)
     email = urllib.quote_plus(render_to_string('email.html', {'post': p}))
     subject = urllib.quote_plus("Your advertisement on TimBoekTU")
@@ -114,5 +114,5 @@ def confirm(request, post_hash):
 def about(request):
     return render(request, 'about.html')
     
-def contact(request):
-    return render(request, 'contact.html')
+def contribute(request):
+    return render(request, 'contribute.html')

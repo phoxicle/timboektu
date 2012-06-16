@@ -6,6 +6,7 @@ body{
 
 a {
 	color: orange;	
+	text-decoration: none;
 }
 
 a:hover {
@@ -14,10 +15,6 @@ a:hover {
 
 .posts a {
 	color: crimson;	
-}
-
-#nav a {
-	text-decoration: none;	
 }
 
 #strip {
@@ -124,11 +121,10 @@ a:hover {
 #main {
 	float: left;
 	padding: 20px 0 20px 0px;
-	width: 584px;
 }
 
 h2 {
-	padding-top: 10px;	
+	padding-top: 20px;	
 }
 
 #search input[type=text] {
@@ -166,6 +162,14 @@ form label {
 	display: inline-block;	
 }
 
+.posts {
+	width: 584px;	
+}
+
+.posts a {
+	text-decoration: underline;	
+}
+
 .posts table {
 	width: 100%;	
 }
@@ -194,7 +198,6 @@ background: #eee;
 a.button,
 div.button a {
 	display: inline-block;
-	text-decoration: none;
 	margin: 20px 0;
 	padding: 5px;
 	border-radius: 5px;
@@ -250,6 +253,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 
 .pagination a {
 	color: #999;	
+}
+
+#footer {
+color: #ccc;
+text-align: center;
+font-size: .7em;
+padding-top: 30px;
+}
+
+#footer a {
+	color: #ccc;
+	text-decoration: underline;	
 }
 
 .clear {

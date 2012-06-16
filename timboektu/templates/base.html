@@ -3,8 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
+	<meta name="description" content="The easiest way to find and sell used university books on your campus. No user accounts, just the information you need.">
+	<meta name="keywords" content="books, university, used books, second hand books, boeken, tweedehands, universiteit">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/global.css" type="text/css" media="all">
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/global.js"></script>
@@ -30,7 +30,7 @@
 				<li><a href="{% url timboektu.books.views.index %}">Search</a></li>
 				<li><a href="{% url timboektu.books.views.new %}">Sell</a></li>
 				<li><a href="{% url timboektu.books.views.about %}">About</a></li>
-				<li><a href="{% url timboektu.books.views.contact %}">Contact</a></li>
+				<li><a href="{% url timboektu.books.views.contribute %}">Contribute</a></li>
 			</ul>
 		</div> <!-- nav -->
 	
@@ -43,23 +43,24 @@
 
 <div id="page">
 
-		{% block sidebar %}
-		{% endblock %}
-		
-		<div id="main">
-		
-			{% block search %} {% endblock %}
-		
-			<h2>{% block title %} {% endblock %}</h2>
-		
-			{% block main %}
-			Main block
-			{% endblock %}
-		
-		</div> <!-- main -->
-		
-		<div class="clear"></div>
+	{% block sidebar %}
+	{% endblock %}
 	
+	<div id="main">
+	
+		{% block search %} {% endblock %}
+	
+		<h2>{% block title %} {% endblock %}</h2>
+	
+		{% block main %}
+		Main block
+		{% endblock %}
+	
+	</div> <!-- main -->
+	
+	<div class="clear"></div>
+
+	<div id="footer">Powered by <a target="_blank" href="http://www.pheide.com">Pheide</a></div>
 	
 </div> <!-- page -->
 </body>
