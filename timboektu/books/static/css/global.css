@@ -121,6 +121,7 @@ a:hover {
 #main {
 	float: left;
 	padding: 20px 0 20px 0px;
+	width: 584px;
 }
 
 h2 {
@@ -163,7 +164,7 @@ form label {
 }
 
 .posts {
-	width: 584px;	
+		
 }
 
 .posts a {
