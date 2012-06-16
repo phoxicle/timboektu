@@ -94,8 +94,9 @@ def new(request):
             send_mail(
                       'TimBoekTU edit link for ' + p.title,
                        render_to_string('email_edit.html', {'post' : p}), 
-                       'from@example.com',
-                       ['cgerpheide@gmail.com'], fail_silently=True)
+                       'services@timboektu.com',
+                       [p.email], 
+                       fail_silently=False)
             p.save()
             return HttpResponseRedirect(reverse('timboektu.books.views.confirm', kwargs={'post_hash': p.hash}))
     # New

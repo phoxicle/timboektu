@@ -1,3 +1,17 @@
-Email about book
+Greetings,
 
-Link {% url timboektu.books.views.edit post_hash=post.hash %}
+{% load absurl %}
+You have successfully added your post for "{{ post.title }}". 
+
+You can view your new post here:
+{% absurl timboektu.books.views.detail post_id=post.id %}
+
+To edit your post, visit the following link:
+{% absurl timboektu.books.views.edit post_hash=post.hash %}
+
+Don't lose this link! Without it you cannot edit your post.
+
+
+Sincerely,
+
+TimBoekTU
