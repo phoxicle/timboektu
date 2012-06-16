@@ -203,6 +203,10 @@ background: #eee;
 	color: red;	
 }
 
+div.button {
+	margin 20px 0;	
+}
+
 a.button,
 div.button a,
 input[type=submit] {
@@ -210,7 +214,6 @@ input[type=submit] {
 	font-size: 1em;
 	border: 0;
 	display: inline-block;
-	margin: 20px 0;
 	padding: 5px 10px;
 	border-radius: 5px;
 	color: white;

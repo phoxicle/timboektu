@@ -96,7 +96,7 @@ def new(request):
                        render_to_string('email_edit.html', {'post' : p}), 
                        'services@timboektu.com',
                        [p.email], 
-                       fail_silently=False)
+                       fail_silently=True)
             p.save()
             return HttpResponseRedirect(reverse('timboektu.books.views.confirm', kwargs={'post_hash': p.hash}))
     # New
