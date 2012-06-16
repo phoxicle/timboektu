@@ -72,7 +72,7 @@ class Post(models.Model):
         
     
     
-    title = models.CharField(max_length=1000)
+    title = models.CharField("Book title", max_length=1000)
     authors = models.CharField(blank=True, max_length=1000)
     EDITION_CHOICES = (
         ('1', '1st'),
@@ -97,6 +97,7 @@ class Post(models.Model):
     mdate = models.DateTimeField(auto_now=True)
     hash = models.CharField(max_length=100, editable=False, blank=True)
     
+    name = models.CharField("Your first name", max_length=100)
     email = models.EmailField("Your email")
     price = models.DecimalField("Asking price", max_digits=5, decimal_places=2, null=True, blank=True,
                                 help_text='Defaults to "Best Offer" when left blank')
