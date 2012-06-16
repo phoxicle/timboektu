@@ -121,11 +121,11 @@ a:hover {
 #main {
 	float: left;
 	padding: 20px 0 20px 0px;
-	width: 584px;
 }
 
 h2 {
 	padding-top: 20px;	
+	max-width: 584px;
 }
 
 #search input[type=text] {
@@ -164,7 +164,7 @@ form label {
 }
 
 .posts {
-		
+	width: 584px;	
 }
 
 .posts a {
