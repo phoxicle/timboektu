@@ -49,15 +49,26 @@ a:hover {
 
 #logo {
 	background: white;
-	padding :10px;
+	padding: 10px 10px 15px;
+	height: 75px;
 	float: left;
 	border-radius: 0 60px 60px;
+}
+
+#logo h1 {
+	margin-bottom: 0;	
 }
 
 #logo a {
 	color: crimson;	
 	/*text-shadow: 6px -3px 2px orange;*/
 	text-decoration: none;
+}
+
+#logo .location {
+	text-align: center;
+	color: grey;
+	font-size: .8em;	
 }
 
 #nav {

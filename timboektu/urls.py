@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^contribute/$', 'timboektu.books.views.contribute'),
     url(r'^post/confirm/(?P<post_hash>.+)/$', 'timboektu.books.views.confirm'),
     url(r'^delete/$', 'timboektu.books.views.delete'),
+    url(r'^locations/$', 'timboektu.books.views.locations'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -123,3 +123,6 @@ def about(request):
     
 def contribute(request):
     return render(request, 'contribute.html')
+
+def locations(request):
+    return render(request, 'locations.html')

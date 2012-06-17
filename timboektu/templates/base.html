@@ -10,7 +10,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/global.js"></script>
 
 
-    <title>TimBoekTU</title>
+    <title>TimBoekTU: Used university books</title>
 		
 </head>
 <body>
@@ -21,6 +21,7 @@
 	
 		<div id="logo">
 			<h1><a href="{% url timboektu.books.views.index %}">TimBoekTU</a></h1>
+			<div class="location">Eindhoven</div>
 		</div> <!-- logo -->
 		
 		<div id="tagline">The <a href="{% url timboektu.books.views.about %}">easiest</a> way to <a href="{% url timboektu.books.views.index %}">buy</a> and <a href="{% url timboektu.books.views.new %}">sell</a> used university books</div>
