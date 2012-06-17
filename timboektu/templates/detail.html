@@ -20,6 +20,7 @@
 		<div class="info"><label>Description:</label> {{ post.description }}</div>
 	</div>
 	<div class="personal_info">
+		<div class="info"><label>Seller name:</label> {{ post.name }}</div>
 		<div class="info price"><label>Asking price:</label> 
 		{% if post.price %}{{ post.price }} EUR
 		{% else %}Best offer
