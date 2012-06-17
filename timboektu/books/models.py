@@ -12,6 +12,9 @@ class QuerySetManager(models.Manager):
 class Department(models.Model):
     title = models.CharField(max_length=100)
     
+    class Meta:
+        ordering = ['title']
+        
     def __unicode__(self):
         return self.title
     
