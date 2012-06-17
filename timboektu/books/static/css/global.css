@@ -122,12 +122,17 @@ a:hover {
 #sidebar ul li {
 	font-size: .9em;
 	padding: 5px 0;
-	border-bottom: 1px solid #eee;
 	list-style-type:none;
+	color: orange;
 }
 
 #sidebar ul li a {
-	text-decoration: none;	
+	text-decoration: none;
+	color: grey;
+}
+
+#sidebar ul li a:hover {
+	color: orange;
 }
 
 #main {
