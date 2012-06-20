@@ -62,8 +62,8 @@ def index(request, department = None):
 
 def detail(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
-    email = urllib.quote_plus(render_to_string('email.html', {'post': p}))
-    subject = urllib.quote_plus("Your advertisement on TimBoekTU")
+    email = urllib.quote(render_to_string('email.html', {'post': p}))
+    subject = urllib.quote("Your advertisement on TimBoekTU")
     mailto = p.email + '?subject=' + subject + '&body=' + email
     return render(request, 'detail.html', {'post': p, 'mailto': mailto })
 
