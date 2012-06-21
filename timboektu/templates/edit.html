@@ -22,8 +22,12 @@ You can get more info and tips on selling on the
     {{ form.as_p }}
     
     
-    <input type="submit" 
-    	value="{% if post %} Update listing {% else %} Add listing {% endif %}"/>
+    <div class="action">
+	    <input type="submit" 
+	    	value="{% if post %} Update listing {% else %} Add listing {% endif %}"/>
+	    <div class="tip">Still not sure how this works? See our <a target="_blank" href="{% url timboektu.books.views.about %}#selling">seller's tips</a>.</div>
+	</div>
+    
     
     {% if post %}
 		<a class="button" href="{% url timboektu.books.views.delete %}?hash={{ post.hash }}">Delete listing</a>

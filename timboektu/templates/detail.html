@@ -29,9 +29,18 @@
 		<div class="info"><label>Date listed:</label> {{ post.crdate }} (Last modified: {{post.mdate}})</div>
 	</div>
 	
-	<div id="contact" class="button">
-		{% load obfuscate %}
-		{{ mailto|obfuscate:'Contact this seller via email' }}
+	<div class="contact">
+		<div class="interested">Interested?</div>
+		<div class="action">
+			<div class="button">
+				{% load obfuscate %}
+				{{ mailto|obfuscate:'Contact this seller via email' }}
+			</div>
+			<div class="tip">
+				Not sure how this works? See our <a target="_blank" href="{% url timboektu.books.views.about %}#buying">buyer's tips</a>.
+			</div>
+		</div>
+		
 	</div>
 	
 {% endblock %}

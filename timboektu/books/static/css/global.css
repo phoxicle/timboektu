@@ -162,7 +162,6 @@ h2 {
 }
 
 .info label {
-	font-weight: bold;
 	display: inline-block;
 	width: 200px;	
 }
@@ -176,7 +175,7 @@ h2 {
 }
 
 form label {
-	width: 150px;
+	width: 200px;
 	display: inline-block;	
 }
 
@@ -276,6 +275,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 	background: url(../images/arrow_down.gif);	
 }
 
+.contact {
+	margin: 0 0 0 5px;
+}
+
+.contact .interested {
+	font-weight: bold;
+	color: #000;
+	float:left;
+	font-size: 1.3em;
+	font-style: italic;
+}
+
+.action {
+	margin: 40px 0 0 200px;	
+}
+
+.contact .button {
+	margin: 0;
+}
+
+.tip {
+	font-size: .8em;
+	padding-top: 10px;
+}
+
 .pagination {
 	text-align: right;	
 	font-size: .8em;
@@ -297,6 +321,10 @@ margin-top: 30px;
 #footer a {
 	color: #ccc;
 	text-decoration: underline;	
+}
+
+.helptext {
+	font-size: .8em;	
 }
 
 .clear {
