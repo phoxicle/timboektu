@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import urllib
 
+
 import sys
 
 # TODO combine with index, optional department id   
@@ -73,7 +74,8 @@ def edit(request, post_hash):
     if request.method == 'POST':
         form = PostForm(request.POST, instance=p)
         if form.is_valid():
-            form.save()
+            p.set_isbn_int()
+            p.save()
             return HttpResponseRedirect(reverse('timboektu.books.views.index'))
     # Edit
     else:
@@ -90,6 +92,8 @@ def new(request):
         if form.is_valid():
             p = form.save()
             p.hash = (os.urandom(16)).encode('hex')
+            p.set_isbn_int()
+            
             # Send edit link to user
             send_mail(
                       'TimBoekTU edit link for ' + p.title,
@@ -97,6 +101,7 @@ def new(request):
                        'services@timboektu.com',
                        [p.email], 
                        fail_silently=True)
+            
             p.save()
             return HttpResponseRedirect(reverse('timboektu.books.views.confirm', kwargs={'post_hash': p.hash}))
     # New

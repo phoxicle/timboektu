@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.db.models.query import QuerySet
+from django.db.models.signals import pre_save
 
 class QuerySetManager(models.Manager):
     
@@ -68,6 +69,7 @@ class Post(models.Model):
                     ors.append(Q(authors__icontains=s))
                     ors.append(Q(courses__icontains=s))
                     ors.append(Q(isbn__icontains=s))
+                    ors.append(Q(isbn_int__icontains=s))
                
                 posts = self.filter(reduce(operator.or_, ors))
         
@@ -90,7 +92,8 @@ class Post(models.Model):
     )
     edition = models.CharField(max_length=2, choices=EDITION_CHOICES, blank=True)
     year = models.CharField("Year of publication", max_length=4, blank=True)
-    isbn = models.CharField("ISBN", max_length=13, blank=True) # http://djangosnippets.org/snippets/1994/
+    isbn = models.CharField("ISBN", max_length=17, blank=True) # http://djangosnippets.org/snippets/1994/
+    isbn_int = models.IntegerField(max_length=13, editable=False, null=True, blank=True)
     courses = models.TextField("Relevant courses", blank=True)
     description = models.TextField(blank=True,
                                    help_text='For example: Dutch language book, good condition.')
@@ -104,6 +107,9 @@ class Post(models.Model):
     email = models.EmailField("Your email")
     price = models.DecimalField("Asking price", max_digits=5, decimal_places=2, null=True, blank=True,
                                 help_text='Defaults to "Best Offer" when left blank')
+    
+    def set_isbn_int(self):
+        self.isbn_int = ''.join(filter(lambda x: x.isdigit(), self.isbn))
     
     class Meta:
         ordering = ['-crdate']
