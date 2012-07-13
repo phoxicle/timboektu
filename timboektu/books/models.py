@@ -109,7 +109,9 @@ class Post(models.Model):
                                 help_text='Defaults to "Best Offer" when left blank')
     
     def set_isbn_int(self):
-        self.isbn_int = ''.join(filter(lambda x: x.isdigit(), self.isbn))
+        isbn_int = ''.join(filter(lambda x: x.isdigit(), self.isbn))
+        if isbn_int:
+            self.isbn_int = int(isbn_int)
     
     class Meta:
         ordering = ['-crdate']
