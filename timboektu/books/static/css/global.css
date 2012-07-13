@@ -18,6 +18,10 @@ a:hover {
 	color: crimson;	
 }
 
+.posts a:hover {
+	color: orange;	
+}
+
 #strip {
 	position: absolute;
 	height: 110px;
@@ -189,10 +193,6 @@ width: 300px;
 	width: 584px;	
 }
 
-.posts a {
-	text-decoration: underline;	
-}
-
 .posts table {
 	width: 100%;	
 }
@@ -261,10 +261,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', end
 	background-position: right center;
 	background-repeat: no-repeat;
 	color: #333;
-}
-
-.posts th a:hover {
-	color: crimson;	
 }
 
 .asc {
