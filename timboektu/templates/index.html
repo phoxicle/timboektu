@@ -100,7 +100,7 @@
 	      		<br/>by: {{ post.authors }}
 			</td>
 			<td> 
-				{% if post.price %}{{ post.price }} EUR
+				{% if post.price != null %}{{ post.price }} EUR
 				{% else %}Best offer
 				{% endif %}
 			</td>

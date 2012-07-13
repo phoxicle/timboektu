@@ -22,7 +22,7 @@
 	<div class="personal_info">
 		<div class="info"><label>Seller name:</label> {{ post.name }}</div>
 		<div class="info price"><label>Asking price:</label> 
-		{% if post.price %}{{ post.price }} EUR
+		{% if post.price != null %}{{ post.price }} EUR
 		{% else %}Best offer
 		{% endif %}
 		</div>
