@@ -39,7 +39,7 @@ def index(request, department = None):
         posts = posts.filter(departments__id=department.id)
         
     # Paging
-    num_per_page = 15 if query else 5 
+    num_per_page = 15 if query or department else 5 
     paginator = Paginator(posts, num_per_page)
     try:
         posts = paginator.page(page)
