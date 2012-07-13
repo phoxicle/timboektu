@@ -99,7 +99,7 @@ class Post(models.Model):
                                    help_text='For example: Dutch language book, good condition.')
     departments = models.ManyToManyField(Department)
     #photo = models.ImageField(blank=True)
-    crdate = models.DateTimeField(auto_now=True)
+    crdate = models.DateTimeField(auto_now_add=True)
     mdate = models.DateTimeField(auto_now=True)
     hash = models.CharField(max_length=100, editable=False, blank=True)
     
