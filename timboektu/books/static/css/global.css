@@ -1,5 +1,5 @@
 body{
-	font-family: Trebuchet MS, Lucida Grande, comic sans ms;
+	font-family: Trebuchet MS, arial, comic sans ms;
 	margin:0;
 	padding:0;
 	color: #333;
@@ -95,7 +95,7 @@ a:hover {
 
 #tagline {
 	color: white;
-    margin-left: 189px;
+    margin-left: 195px;
     margin-top: 77px;
     position: absolute;	
 }
