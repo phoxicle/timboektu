@@ -1,7 +1,7 @@
 Greetings,
 
 {% load absurl %}
-You have successfully added your post for "{{ post.title }}". 
+You have successfully added your post for "{{ post.title|safe }}". 
 
 You can view your new post here:
 {% absurl timboektu.books.views.detail post_id=post.id %}
