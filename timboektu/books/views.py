@@ -76,7 +76,7 @@ def edit(request, post_hash):
         if form.is_valid():
             p.set_isbn_int()
             p.save()
-            return HttpResponseRedirect(reverse('timboektu.books.views.index'))
+            return HttpResponseRedirect(reverse('timboektu.books.views.detail', kwargs={'post_id': p.id}))
     # Edit
     else:
         form = PostForm(instance=p) 
