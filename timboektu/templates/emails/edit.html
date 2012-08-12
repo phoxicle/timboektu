@@ -1,0 +1,18 @@
+Greetings human,
+{% load absurl %}
+
+You have successfully added your listing for "{{ post.title|safe }}". 
+
+You can view your new listing here:
+{% absurl timboektu.books.views.detail post_id=post.id %}
+
+To edit your listing, visit the following link:
+{% absurl timboektu.books.views.edit post_hash=post.hash %}
+
+Don't lose this link! Without it you cannot edit your listing.
+
+
+Sincerely,
+
+TimBoekTU
+{% absurl timboektu.books.views.index %}

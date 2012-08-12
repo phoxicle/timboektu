@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template.loader import render_to_string
-import time
 import os
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import urllib
+from timboektu.books.config import NOTIFY_THRESHOLD, DELETE_THRESHOLD
 
 
 import sys
@@ -63,8 +63,8 @@ def index(request, department = None):
 
 def detail(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
-    email = urllib.quote(render_to_string('email.html', {'post': p}))
-    subject = urllib.quote("Your advertisement on TimBoekTU")
+    email = urllib.quote(render_to_string('emails/purchase.html', {'post': p}))
+    subject = urllib.quote("Interest in your advertisement on TimBoekTU")
     mailto = p.email + '?subject=' + subject + '&body=' + email
     return render(request, 'detail.html', {'post': p, 'mailto': mailto })
 
@@ -81,8 +81,9 @@ def edit(request, post_hash):
     else:
         form = PostForm(instance=p) 
     return render(request, 'edit.html', {
-        'form': form,
-        'post' : p
+        'form' : form,
+        'post' : p,
+        'delete' : DELETE_THRESHOLD
     })
     
 def new(request):
@@ -97,7 +98,7 @@ def new(request):
             # Send edit link to user
             send_mail(
                       'TimBoekTU edit link for ' + p.title,
-                       render_to_string('email_edit.html', {'post' : p}), 
+                       render_to_string('emails/edit.html', {'post' : p}), 
                        'services@timboektu.com',
                        [p.email], 
                        fail_silently=True)
@@ -108,13 +109,21 @@ def new(request):
     else:
         form = PostForm()
     return render(request, 'edit.html', {
-        'form': form,
+        'form' : form,
+        'delete' : DELETE_THRESHOLD
     })
     
 def confirm(request, post_hash):
     p = get_object_or_404(Post, hash=post_hash)
     return render(request, 'confirm.html', {
-        'post': p,
+        'post' : p,
+    })
+    
+def renew(request, post_hash):
+    p = get_object_or_404(Post, hash=post_hash)
+    p.save() # Updates mdate, notified
+    return render(request, 'renew.html', {
+        'post' : p,
     })
 
 def delete(request):

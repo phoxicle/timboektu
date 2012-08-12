@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.db.models.query import QuerySet
 from django.db.models.signals import pre_save
+import datetime
 
 class QuerySetManager(models.Manager):
     
@@ -99,19 +100,28 @@ class Post(models.Model):
                                    help_text='For example: Dutch language book, good condition.')
     departments = models.ManyToManyField(Department)
     #photo = models.ImageField(blank=True)
-    crdate = models.DateTimeField(auto_now_add=True)
-    mdate = models.DateTimeField(auto_now=True)
+    crdate = models.DateTimeField(default=datetime.datetime.now, editable=False)
+    mdate = models.DateTimeField(default=datetime.datetime.now, editable=False)
+    notified = models.BooleanField(editable=False)
     hash = models.CharField(max_length=100, editable=False, blank=True)
     
     name = models.CharField("Your first name", max_length=100)
     email = models.EmailField("Your email")
     price = models.DecimalField("Asking price", max_digits=5, decimal_places=2, null=True, blank=True,
-                                help_text='Defaults to "Best Offer" when left blank')
+                                help_text='Defaults to "Best Offer" when left blank. Note that users will be more likely to buy your book if you enter a set price.')
     
     def set_isbn_int(self):
         isbn_int = ''.join(filter(lambda x: x.isdigit(), self.isbn))
         if isbn_int:
             self.isbn_int = int(isbn_int)
+    
+    def save(self, *args, **kwargs):
+        if not kwargs.pop('skip_mdate', False):
+            self.mdate = datetime.datetime.now()
+            # Reset notified as well
+            self.notified = False
+
+        super(Post, self).save(*args, **kwargs)
     
     class Meta:
         ordering = ['-crdate']

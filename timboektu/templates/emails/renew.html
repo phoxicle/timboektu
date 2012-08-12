@@ -1,0 +1,25 @@
+Good day,
+{% load absurl %}
+
+Your listing on TimBoekTU for "{{ post.title|safe }}" 
+has not been edited for {{ notify }} days.
+
+In order to make sure listings stay relevant, we automatically remove 
+listings after {{ delete }} days. If you would like to renew your listing 
+for another {{ delete }} days, click on the link below:
+
+{% absurl timboektu.books.views.renew post_hash=post.hash %}
+
+If you'd like to edit or delete your listing, use the following link 
+(updating your listing will automatically renew it):
+
+{% absurl timboektu.books.views.edit post_hash=post.hash %}
+
+If no action is taken, your listing will be removed automatically in 
+{{ delta }} days. No further notices will be sent.
+
+
+Yours faithfully,
+
+TimBoekTU
+{% absurl timboektu.books.views.index %}

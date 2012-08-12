@@ -1,0 +1,18 @@
+Dear {{ post.name }},
+{% load absurl %}
+
+I found your book advertisement on TimBoekTU. 
+
+{% if post.price %}I am interested in purchasing it for your stated price of {{ post.price }} EUR.
+{% else %}I would like to offer you [YOUR BID HERE] EUR to purchase it from you.{% endif %}
+
+Please respond to this email if you are interested in meeting to 
+inspect the book and arrange the purchase.
+
+
+Thanks,
+[YOUR NAME HERE]
+
+TimBoekTU
+{% absurl timboektu.books.views.index %}
+Buying and selling tips: {% absurl timboektu.books.views.about %} 
