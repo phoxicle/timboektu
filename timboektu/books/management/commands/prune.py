@@ -29,7 +29,7 @@ class Command(BaseCommand):
         # Send warning emails to old post owners with a renewal link
         for p in posts:
             send_mail(
-                  'TimBoekTU: Renewal request for ' + p.title,
+                  'Renew your TimBoekTU listing',
                    render_to_string('emails/renew.html', 
                                     {
                                      'post' : p,
