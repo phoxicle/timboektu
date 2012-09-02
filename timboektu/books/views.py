@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import urllib
 from timboektu.books.config import NOTIFY_THRESHOLD, DELETE_THRESHOLD
+from django.db.models import Count
 
 
 import sys
@@ -49,10 +50,10 @@ def index(request, department = None):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
-        
+    
     return render(request, 'index.html', {
         'posts': posts,
-        'departments': Department.objects.all(),
+        'departments': Department.objects.annotate(count=Count('post')),
         'current_department': department,
         'query' : query,
         'title_order_by' : '-title' if order_by == 'title' else 'title',

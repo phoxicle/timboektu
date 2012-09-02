@@ -17,10 +17,10 @@
 			{% for d in departments %}
 				<li>
 				{% ifequal d.id current_department.id %} {# coerce to int #}
-					{{ d.title }}
+					{{ d.title }} ({{ d.count }})
 				{% else %}
 					<a href="{% url timboektu.books.views.department department_id=d.id %}">
-						{{ d.title }}
+						{{ d.title }} ({{ d.count }})
 					</a>
 				{% endifequal %}
 				
