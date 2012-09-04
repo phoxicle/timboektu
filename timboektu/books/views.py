@@ -53,7 +53,7 @@ def index(request, department = None):
     
     return render(request, 'index.html', {
         'posts': posts,
-        'departments': Department.objects.annotate(count=Count('post')),
+        'departments': Department.objects.annotate(my_count=Count('post')),
         'current_department': department,
         'query' : query,
         'title_order_by' : '-title' if order_by == 'title' else 'title',
